@@ -7,12 +7,10 @@ module.exports = {
     }
   , grep: function (payload, done) {
         this.opt.grep = payload
-        this.emit('update grep', this.opt.grep)
         done(null, this._getList(this.opt.todos))
    }
  , sort: function (payload, done) {
         this.opt.sort = payload
-        this.emit('update sort', this.opt.sort)
         done(null, this._getList(this.opt.todos))
    }
  , _getList: function (_todos) {

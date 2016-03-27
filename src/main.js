@@ -35,8 +35,8 @@ var storeTodos = store(TODOS, {
                     todos: []
                   , grep: null
                   , sort: DEFAULT_SORT_PAYLOAD
-                  , sorts: SORT_PAYLOADS
                  }, require('./stores/todos-role'))
+var storeSort  = store(TODOS, {sort: DEFAULT_SORT_PAYLOAD, sorts: SORT_PAYLOADS}, require('./stores/sort-role'))
 var storeError = store(ERROR, {error: null}, require('./stores/error-role'))
 // piping !!
 koime(
@@ -46,6 +46,7 @@ koime(
 )(
     storeTodo
   , storeTodos
+  , storeSort
   , storeError
 )(function onError (err) {
     actError.error(err)
@@ -57,5 +58,6 @@ ReactDOM.render(<App context={{
   , actError: actError
   , storeTodo: storeTodo
   , storeTodos: storeTodos
+  , storeSort: storeSort
   , storeError: storeError
 }} />, document.querySelector('#react-app'))

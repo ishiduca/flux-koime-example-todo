@@ -34,8 +34,8 @@ var App = React.createClass({
         return {
             todo:  context.storeTodo.opt.todo
           , todos: context.storeTodos.opt.todos
-          , sorts: context.storeTodos.opt.sorts
-          , sort:  context.storeTodos.opt.sort
+          , sort:  context.storeSort.opt.sort
+          , sorts: context.storeSort.opt.sorts
           , grep:  context.storeTodos.opt.grep
           , error: context.storeError.opt.error
         }
@@ -52,7 +52,7 @@ var App = React.createClass({
         context.storeError.on('data', function (err) {
             me.setState({error: err})
         })
-        context.storeTodos.on('update sort', function (sort) {
+        context.storeSort.on('data', function (sort) {
             me.setState({sort: sort})
         })
         context.actTodos.getList()
@@ -62,6 +62,7 @@ var App = React.createClass({
         var me      = this
         context.storeTodo.removeAllListeners()
         context.storeTodos.removeAllListeners()
+        context.storeSort.removeAllListeners()
         context.storeError.removeAllListeners()
     }
 })
